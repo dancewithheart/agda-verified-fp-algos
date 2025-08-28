@@ -11,7 +11,7 @@ Coq standard library: https://github.com/coq/coq/blob/master/theories/PArith/Bin
 Agda-stdlib: https://github.com/agda/agda-stdlib/blob/master/src/Data/List/Relation/Binary/Permutation/Propositional.agda
 -}
 
-module Permutation where
+module VerifiedAlgos.Permutation where
 
 open import Data.Nat using (suc)
 open import Data.List using (List; []; _∷_; length)
