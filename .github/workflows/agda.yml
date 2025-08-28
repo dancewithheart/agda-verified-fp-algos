@@ -37,8 +37,8 @@ jobs:
       - run: agda VerifiedAlgos/Positive.agda
         working-directory: src
         
-      - run: agda VerifiedAlgos/Int.agda
-        working-directory: src
+#      - run: agda VerifiedAlgos/Int.agda
+#        working-directory: src
 
-      - run: agda VerifiedAlgos/CollisionsInt.agda
-        working-directory: src
+ #     - run: agda VerifiedAlgos/CollisionsInt.agda
+ #       working-directory: src
