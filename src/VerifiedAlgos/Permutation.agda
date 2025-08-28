@@ -36,7 +36,7 @@ permLen : ∀ {A : Set} (xs ys : List A) (p : Permutation xs ys)
         → length xs ≡ length ys
 permLen .[] .[] permNil = refl
 permLen .(x ∷ xs) .(x ∷ xs') ps @ (permSkip x xs xs' p)
-  rewrite lenghAppendSuc xs x
+  rewrite lengthAppendSuc xs x
   | permLen xs xs' p = refl
 permLen .(y ∷ x ∷ xs) .(x ∷ y ∷ xs) (permSwap x y xs) = refl
 permLen xs ys (permTrans .xs zs .ys p1 p2)
