@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: wenkokke/setup-agda@v2
+        with:
+          agda-stdlib-version: 'recommended'
+
+#      - run: agda VerifiedAlgos/Permutation.agda
+#        working-directory: src
+
+      - run: agda VerifiedAlgos/Maps.agda
+        working-directory: src
+
+      - run: agda VerifiedAlgos/BST.agda
+        working-directory: src
+     
+      - run: agda VerifiedAlgos/RedBlackTree.agda
+        working-directory: src
+
+      - run: agda VerifiedAlgos/Collisions.agda
+        working-directory: src
+
+      - run: agda VerifiedAlgos/Positive.agda
+        working-directory: src
+        
+#      - run: agda VerifiedAlgos/Int.agda
+#        working-directory: src
+
+ #     - run: agda VerifiedAlgos/CollisionsInt.agda
+ #       working-directory: src

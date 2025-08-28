@@ -11,7 +11,7 @@ Coq standard library: https://github.com/coq/coq/blob/master/theories/PArith/Bin
 Agda-stdlib: https://github.com/agda/agda-stdlib/blob/master/src/Data/List/Relation/Binary/Permutation/Propositional.agda
 -}
 
-module Permutation where
+module VerifiedAlgos.Permutation where
 
 open import Data.Nat using (suc)
 open import Data.List using (List; []; _∷_; length)
@@ -36,7 +36,7 @@ permLen : ∀ {A : Set} (xs ys : List A) (p : Permutation xs ys)
         → length xs ≡ length ys
 permLen .[] .[] permNil = refl
 permLen .(x ∷ xs) .(x ∷ xs') ps @ (permSkip x xs xs' p)
-  rewrite lenghAppendSuc xs x
+  rewrite lengthAppendSuc xs x
   | permLen xs xs' p = refl
 permLen .(y ∷ x ∷ xs) .(x ∷ y ∷ xs) (permSwap x y xs) = refl
 permLen xs ys (permTrans .xs zs .ys p1 p2)
