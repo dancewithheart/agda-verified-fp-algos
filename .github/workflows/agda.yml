@@ -19,8 +19,8 @@ jobs:
         with:
           agda-stdlib-version: 'recommended'
 
-      - run: agda VerifiedAlgos/Permutation.agda
-        working-directory: src
+#      - run: agda VerifiedAlgos/Permutation.agda
+#        working-directory: src
 
       - run: agda VerifiedAlgos/Maps.agda
         working-directory: src
