@@ -15,7 +15,7 @@ module VerifiedAlgos.Permutation where
 
 open import Data.Nat using (suc)
 open import Data.List using (List; []; _∷_; length)
-open import Relation.Binary.PropositionalEquality using (_≡_; refl)
+open import Relation.Binary.PropositionalEquality using (_≡_; refl; cong; trans)
 
 data Permutation {A : Set} : List A → List A → Set where
   permNil : Permutation [] []
@@ -42,15 +42,17 @@ permLen .(y ∷ x ∷ xs) .(x ∷ y ∷ xs) (permSwap x y xs) = refl
 permLen xs ys (permTrans .xs zs .ys p1 p2)
   rewrite permLen xs zs p1 = permLen zs ys p2
 
-permSym : ∀ {A : Set} (xs ys : List A) (p : Permutation xs ys)
-       → Permutation ys xs
-permSym .[] .[] permNil = permNil
-permSym .(x ∷ xs) .(x ∷ xs')
-        (permSkip x xs xs' p) =
-         permSkip x xs' xs (permSym xs xs' p)
-permSym .(y ∷ x ∷ xs) .(x ∷ y ∷ xs)
-        (permSwap x y xs) =
-         permSwap y x xs
-permSym xs zs
-        (permTrans .xs ys .zs p1 p2) =
-        permTrans zs ys xs (permSym ys zs p2) (permSym xs ys p1)
+permSym : ∀ {A : Set} {xs ys : List A}
+        → Permutation xs ys
+        → Permutation ys xs
+permSym permNil = permNil
+permSym (permSkip x xs xs' p) =
+  permSkip x xs' xs (permSym p)
+permSym (permSwap x y xs) =
+  permSwap y x xs
+permSym (permTrans xs ys zs p q) =
+  permTrans zs ys xs (permSym q) (permSym p)
+
+permRefl : ∀ {A : Set} (xs : List A) → Permutation xs xs
+permRefl [] = permNil
+permRefl (x ∷ xs) = permSkip x xs xs (permRefl xs)
